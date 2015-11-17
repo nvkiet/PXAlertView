@@ -318,7 +318,11 @@ static const CGFloat AlertViewVerticalEdgeMinMargin = 25;
 
 - (CGPoint)centerWithFrame:(CGRect)frame
 {
-	return CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame) - [self statusBarOffset]);
+    CGFloat offsetY = 0;
+    if ([self.contentView isKindOfClass:[UITextView class]]) {
+        offsetY = 110;
+    }
+    return CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame) - [self statusBarOffset] - offsetY);
 }
 
 - (CGFloat)statusBarOffset
